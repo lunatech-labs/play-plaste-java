@@ -10,7 +10,7 @@ import java.util.{Map => JMap}
 object Pygments {
 	private val p = new ForkPygmentize
 
-	implicit val myPreferredOrdering = CaseInsensitiveOrdering
+	implicit private val myPreferredOrdering = CaseInsensitiveOrdering
 	val lexers: JMap[String, String] = {
 		def buildLexerTuple(l: LexerDefinition) = l.name -> l.aliases.head
 		TreeMap(p.allLexers.map(buildLexerTuple).toSeq: _*)
@@ -21,6 +21,6 @@ object Pygments {
 	}
 }
 
-object CaseInsensitiveOrdering extends StringOrdering {
+private object CaseInsensitiveOrdering extends StringOrdering {
 	override def compare(x: String, y: String) = super.compare(x.toLowerCase, y.toLowerCase)
 }
