@@ -14,13 +14,9 @@
 	</p>
 	<p>
 		<select id="codeMimeType" name="codeMimeType" tabindex="20">
-				<option>text</option>
-				<option>CSS</option>
-				<option>Java</option>
-				<option>Javascript</option>
-				<option>PHP</option>
-				<option>SQL</option>
-				<option>XML</option>
+			#{list items:lexers, as:'lexer'}
+				<option value="${lexer.value}">${lexer.key}</option>
+			#{/list}
 		</select> language
 	</p>
 

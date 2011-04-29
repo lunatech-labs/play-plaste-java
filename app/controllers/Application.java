@@ -1,6 +1,7 @@
 package controllers;
 
 import backend.PlasteBot;
+import backend.Pygments;
 import models.Paste;
 import play.Play;
 import play.mvc.Controller;
@@ -11,25 +12,28 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application extends Controller {
 	public static void gotoIndex() {
 		index();
 	}
 
-    public static void index() {
+	public static void index() {
 		List<Paste> pastes = Paste.all().fetch();
-        render(pastes);
-    }
+		render(pastes);
+	}
 
 	public static void show(Long id) {
-		Paste paste = Paste.findById(id);
-		render(paste);
+		final Paste paste = Paste.findById(id);
+		final String highlightedCode = Pygments.highlight(paste.code, paste.codeMimeType);
+		render(paste, highlightedCode);
 	}
 
 	public static void newPaste() {
 		final List<String> nicks = PlasteBot.getInstance().getNicks();
-		render(nicks);
+		final Map<String,String> lexers = Pygments.lexers();
+		render(nicks, lexers);
 	}
 
 	public static void post(final String title, final String code,

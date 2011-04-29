@@ -1,0 +1,9 @@
+div.sourcelist {
+	background-color: #fdf6e3;
+}
+
+div.sourcelist td.linenos {
+	background-color: #eee8d5;
+	color: #586e75;
+}
+

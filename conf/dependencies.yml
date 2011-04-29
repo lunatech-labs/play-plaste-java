@@ -2,3 +2,12 @@
 
 require:
     - play
+    - play -> scala 0.9
+    - org.smop -> pygments_2.8.1 0.1.2
+    - pircbot -> pircbot 1.5.0
+repositories:
+    - lunatechPublic:
+        type: iBiblio
+        root: "http://nexus.lunatech.com/content/repositories/lunatech-public/"
+        contains:
+            - org.smop -> *

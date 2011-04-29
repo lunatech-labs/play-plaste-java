@@ -11,7 +11,7 @@ import play.test.Fixtures;
 import java.io.IOException;
 
 @OnApplicationStart
-public class Bootstrap extends Job {
+public class Bootstrap extends Job<Object> {
 	@Override
 	public void doJob() {
 		try {
