@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+#{set title: 'New paste' /}
+
+#{form @Application.post()}
+	<p class="label">
+		<label for="title">Title</label>
+
+	</p>
+	<p><input id="title" name="title" tabindex="10" value="" class="title "/></p>
+
+	<p class="label">
+		<label for="code">Code</label>
+
+	</p>
+	<p>
+		<select id="codeMimeType" name="codeMimeType" tabindex="20">
+				<option>text</option>
+				<option>CSS</option>
+				<option>Java</option>
+				<option>Javascript</option>
+				<option>PHP</option>
+				<option>SQL</option>
+				<option>XML</option>
+		</select> language
+	</p>
+
+	<p><textarea id="code" name="code" rows="40" tabindex="30" class=""></textarea></p>
+
+	<p class="label">
+		<label for="attachment">Attachment</label>
+	</p>
+	<p><input type="file" id="attachment" name="attachment" /></p>
+
+	<p class="label"><label for="pastedByNick">From</label> (your IRC nick - optional)</p>
+	<p><input id="pastedByNick" name="pastedByNick" class="pastedBy" value="" tabindex="40"/></p>
+
+	<p class="label"><label for="pastedForNick">For</label> (someone else's nick - optional)</p>
+	<p>
+		<select id="pastedForNick" name="pastedForNick" class="pastedFor" tabindex="50">
+			<option></option>
+			#{list items:nicks, as:'nick'}
+				<option>${nick}</option>
+			#{/list}
+		</select>
+	</p>
+
+	<p>
+		<input type="submit" value="Paste" tabindex="50" accesskey="s">
+	</p>
+#{/form}

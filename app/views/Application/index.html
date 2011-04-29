@@ -1,4 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+<h1>Plaste</h1>
+
+#{if pastes.size() > 0}
+	<div class="recent-pastes">
+		<h3>Most recent pastes</h3>
+		<ul>
+			#{list items:pastes, as:'paste'}
+				<li><a href="@{Application.show(paste.id)}">${paste.title} ${paste.pastedAt}</a></li>
+			#{/list}
+		</ul>
+	</div>
+#{/if}
