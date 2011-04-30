@@ -3,13 +3,9 @@ package controllers;
 import backend.PlasteBot;
 import backend.Pygments;
 import models.Paste;
-import play.Play;
 import play.mvc.Controller;
 import play.mvc.Router;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +16,7 @@ public class Application extends Controller {
 	}
 
 	public static void index() {
-		List<Paste> pastes = Paste.all().fetch();
+		List<Paste> pastes = Paste.find("order by pastedAt desc").fetch();
 		render(pastes);
 	}
 
