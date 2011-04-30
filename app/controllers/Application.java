@@ -2,6 +2,7 @@ package controllers;
 
 import backend.PlasteBot;
 import backend.Pygments;
+import jobs.IrcMessageJob;
 import models.Paste;
 import play.mvc.Controller;
 import play.mvc.Router;
@@ -43,12 +44,12 @@ public class Application extends Controller {
 			attachmentMimeType, pastedByNick, pastedForNick);
 		paste.save();
 
-		// Send notification to IRC
 		final HashMap<String, Object> args = new HashMap<String, Object>();
 		args.put("id", paste.id);
-		PlasteBot.getInstance().sendMessage(paste.getLongDescription() + " at " +
-			Router.getFullUrl("Application.show", args));
+		final String url = Router.getFullUrl("Application.show", args);
+		IrcMessageJob.sendMessage(paste, url);
 
 		show(paste.id);
 	}
+
 }
