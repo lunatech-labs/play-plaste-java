@@ -22,6 +22,7 @@ public class Application extends Controller {
 
 	public static void show(Long id) {
 		final Paste paste = Paste.findById(id);
+		notFoundIfNull(paste);
 		final String highlightedCode = Pygments.highlight(paste.code, paste.codeMimeType);
 		render(paste, highlightedCode);
 	}
