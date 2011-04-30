@@ -5,6 +5,7 @@ import org.jibble.pircbot.PircBot;
 import org.jibble.pircbot.User;
 import play.Logger;
 import play.Play;
+import play.mvc.Router;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -13,15 +14,16 @@ import java.util.List;
 
 public class PlasteBot extends PircBot {
 	private static PlasteBot instance = null;
-	private String channel;
+	private final String channel;
+	private final String nick;
 
 	private PlasteBot() throws IOException, IrcException {
-		final String nick = Play.configuration.getProperty("irc.nick", "PlasteBot");
+		this.nick = Play.configuration.getProperty("irc.nick", "PlasteBot");
 		final String server = Play.configuration.getProperty("irc.server", "irc.lunatech.com");
 		this.channel = Play.configuration.getProperty("irc.channel", "#test");
 
 		Logger.info("IRC bot connecting as [" + nick + "]");
-		setName(nick);
+		setName(this.nick);
 		setAutoNickChange(true);
 		setEncoding("UTF-8");
 		connect(server);
@@ -65,5 +67,23 @@ public class PlasteBot extends PircBot {
 
 	public void sendMessage(final String message) {
 		sendMessage(this.channel, message);
+	}
+
+	@Override
+	protected void onMessage(final String channel, final String sender, final String login,
+							 final String hostname, final String message) {
+		if (message.matches("^" + getNick() + ":.*$")) {
+			sendMessage(sender + ": " + getNewPasteUrl());
+		}
+	}
+
+	@Override
+	protected void onPrivateMessage(final String sender, final String login, final String hostname,
+									final String message) {
+		sendMessage(sender, getNewPasteUrl());
+	}
+
+	private String getNewPasteUrl() {
+		return Router.getFullUrl("Application.newPaste");
 	}
 }
