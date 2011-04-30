@@ -8,6 +8,7 @@ GET     /pastes                                 Application.index
 GET		/paste/new								Application.newPaste
 POST	/paste/post								Application.post
 GET		/paste/{id}								Application.show
+GET		/paste/{id}/attachment					Application.attachment
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

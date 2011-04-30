@@ -4,9 +4,14 @@ import backend.PlasteBot;
 import backend.Pygments;
 import jobs.IrcMessageJob;
 import models.Paste;
+import net.sf.jmimemagic.Magic;
+import org.apache.commons.io.IOUtils;
+import play.Logger;
+import play.db.jpa.JPABase;
 import play.mvc.Controller;
 import play.mvc.Router;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,15 +39,37 @@ public class Application extends Controller {
 		render(nicks, lexers);
 	}
 
-	public static void post(final String title, final String code,
-								final String codeMimeType,
-								final byte[] attachment,
-								final String attachmentMimeType,
-								final String pastedByNick,
-								final String pastedForNick) {
-		final Paste paste = new Paste(title, code, codeMimeType, attachment,
-			attachmentMimeType, pastedByNick, pastedForNick);
+	public static void post(final File attachment, final Paste paste) {
+		if (attachment != null && attachment.canRead()) {
+			final FileInputStream inputStream;
+			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			try {
+				inputStream = new FileInputStream(attachment);
+				IOUtils.copy(inputStream, outputStream);
+			} catch (FileNotFoundException e) {
+				Logger.error("Play gave as u file that cannot be found", e);
+				error("Unable to process the uploaded file");
+			} catch (IOException e) {
+				Logger.error("Failed to copy the uploaded file to a byte array", e);
+				error("Unable to process the uploaded file");
+			}
+			final byte[] contents = outputStream.toByteArray();
+			paste.attachment = contents;
+
+			try {
+				paste.attachmentMimeType = Magic.getMagicMatch(contents).getMimeType();
+				Logger.info("Mime type: " + paste.attachmentMimeType);
+			} catch (Exception e) {
+				Logger.warn("Unable to determine mimetype for attachment", e);
+				paste.attachmentMimeType = "application/octet-stream";
+			}
+
+			final String[] pathParts = attachment.getName().split("/");
+			paste.attachmentFilename = pathParts[pathParts.length - 1];
+		}
+
 		paste.save();
+
 
 		final HashMap<String, Object> args = new HashMap<String, Object>();
 		args.put("id", paste.id);
@@ -52,4 +79,18 @@ public class Application extends Controller {
 		show(paste.id);
 	}
 
+	public static void attachment(Long id) {
+		final Paste paste = Paste.findById(id);
+		notFoundIfNull(paste);
+
+		response.contentType = paste.attachmentMimeType;
+		response.setHeader("Content-Disposition", "attachment; filename=" + paste.attachmentFilename + ";");
+		try {
+			response.out.write(paste.attachment);
+		} catch (IOException e) {
+			Logger.error("Failed to write attachment to response", e);
+			response.contentType = "text/html";
+			error("Failed to send attachment");
+		}
+	}
 }

@@ -17,6 +17,7 @@ public class Paste extends Model {
 	@Lob // Play makes this a BLOB
 	public byte[] attachment;
 	public String attachmentMimeType;
+	public String attachmentFilename;
 
 	public Date pastedAt;
 	public String pastedByNick;
@@ -54,5 +55,9 @@ public class Paste extends Model {
 			description.append("from " + this.pastedByNick);
 
 		return description.toString();
+	}
+
+	public String attachmentAsString() {
+		return new String(this.attachment);
 	}
 }
