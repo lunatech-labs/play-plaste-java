@@ -26,6 +26,8 @@ public class PlasteBot extends PircBot {
 		setName(this.nick);
 		setAutoNickChange(true);
 		setEncoding("UTF-8");
+		setLogin(this.nick);
+		setVersion("PlasteBot, " + getNewPasteUrl());
 		connect(server);
 		Logger.info("IRC bot connected to [" + server + "]");
 		joinChannel(channel);
