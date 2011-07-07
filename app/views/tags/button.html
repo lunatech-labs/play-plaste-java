@@ -1,0 +1,6 @@
+#{if request.url == _action.toString()}
+    <a class="disabled ${_class} button"><span>${_title}</span></a>
+#{/if}
+#{else}
+    <a class="${_class} button" href="${_action}"><span>${_title}</span></a>
+#{/else}
