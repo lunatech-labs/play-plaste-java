@@ -7,7 +7,7 @@
         <div class="paste">
             <p class="age">
                 posted at ${paste.pastedAt}
-                #{if paste.pastedByNick != null}
+                #{if paste.pastedByNick != null && paste.pastedByNick != ''}
                     by <strong>${paste.pastedByNick}</strong>
                 #{/if}
             </p>
