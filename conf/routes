@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET		/										Application.gotoIndex
+GET		/										Application.gotoNewPaste
 GET     /pastes                                 Application.index
 GET		/paste/new								Application.newPaste
 POST	/paste/post								Application.post

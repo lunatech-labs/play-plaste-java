@@ -1,46 +1,48 @@
 #{extends 'main.html' /}
 #{set title: 'New paste' /}
 
-#{form @Application.post(), enctype:'multipart/form-data'}
-	<p class="label">
-		<label for="paste.title">Title</label>
+<div class="content">
+    #{form @Application.post(), enctype:'multipart/form-data'}
+    <p class="label">
+        <label for="paste.title">Title</label>
 
-	</p>
-	<p><input id="paste.title" name="paste.title" tabindex="10" value="" class="title "/></p>
+    </p>
+    <p><input id="paste.title" name="paste.title" tabindex="10" value="" class="title "/></p>
 
-	<p class="label">
-		<label for="paste.code">Code</label>
+    <p class="label">
+        <label for="paste.code">Code</label>
 
-	</p>
-	<p>
-		<select id="paste.codeMimeType" name="paste.codeMimeType" tabindex="20">
-			#{list items:lexers, as:'lexer'}
-				<option value="${lexer.value}">${lexer.key}</option>
-			#{/list}
-		</select> language
-	</p>
+    </p>
+    <p>
+        <select id="paste.codeMimeType" name="paste.codeMimeType" tabindex="20">
+            #{list items:lexers, as:'lexer'}
+            <option value="${lexer.value}">${lexer.key}</option>
+            #{/list}
+        </select> language
+    </p>
 
-	<p><textarea id="paste.code" name="paste.code" rows="40" tabindex="30" class=""></textarea></p>
+    <p><textarea id="paste.code" name="paste.code" rows="40" tabindex="30" class=""></textarea></p>
 
-	<p class="label">
-		<label for="attachment">Attachment</label>
-	</p>
-	<p><input type="file" id="attachment" name="attachment" /></p>
+    <p class="label">
+        <label for="attachment">Attachment</label>
+    </p>
+    <p><input type="file" id="attachment" name="attachment" /></p>
 
-	<p class="label"><label for="paste.pastedByNick">From</label> (your IRC nick - optional)</p>
-	<p><input id="paste.pastedByNick" name="paste.pastedByNick" class="pastedBy" value="" tabindex="40"/></p>
+    <p class="label"><label for="paste.pastedByNick">From</label> (your IRC nick - optional)</p>
+    <p><input id="paste.pastedByNick" name="paste.pastedByNick" class="pastedBy" value="" tabindex="40"/></p>
 
-	<p class="label"><label for="paste.pastedForNick">For</label> (someone else's nick - optional)</p>
-	<p>
-		<select id="paste.pastedForNick" name="paste.pastedForNick" class="pastedFor" tabindex="50">
-			<option></option>
-			#{list items:nicks, as:'nick'}
-				<option>${nick}</option>
-			#{/list}
-		</select>
-	</p>
+    <p class="label"><label for="paste.pastedForNick">For</label> (someone else's nick - optional)</p>
+    <p>
+        <select id="paste.pastedForNick" name="paste.pastedForNick" class="pastedFor" tabindex="50">
+            <option></option>
+            #{list items:nicks, as:'nick'}
+            <option>${nick}</option>
+            #{/list}
+        </select>
+    </p>
 
-	<p>
-		<input type="submit" value="Paste" tabindex="50" accesskey="s">
-	</p>
-#{/form}
+    <p>
+        <input type="submit" value="Paste" tabindex="50" accesskey="s">
+    </p>
+    #{/form}
+</div>

@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Application extends Controller {
-	public static void gotoIndex() {
-		index();
+	public static void gotoNewPaste() {
+		newPaste();
 	}
 
 	public static void index() {

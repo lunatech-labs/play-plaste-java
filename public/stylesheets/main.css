@@ -7,3 +7,116 @@ div.sourcelist td.linenos {
 	color: #586e75;
 }
 
+body {
+ margin:0;
+ font-family:"Lucida Grande", sans-serif;
+}
+
+/* TOOLBAR*/
+
+div.toolbar {
+ background:#ccc;
+ border-bottom:solid 1px #999;
+ padding:0.5em;
+}
+div.toolbar p {
+ font-size:24px;
+ line-height:27px;
+ margin:0;
+}
+div.toolbar p.title {
+ color:#666;
+ font-size:12px;
+ line-height:36px;
+ float:right;
+}
+div.toolbar a.button {
+ color:black;
+ text-decoration:none;
+ background:8px 8px no-repeat;
+ padding:8px 16px 8px 44px;
+}
+div.toolbar a.disabled {
+ color:#666;
+}
+div.toolbar a.button:hover {
+ background-color:#ddd;
+}
+div.toolbar a.disabled:hover {
+ background-color:inherit;
+}
+div.toolbar a.button span {
+ font-size:14px;
+}
+div.toolbar a.browse {
+ background-image:url(../images/edit-paste.png);
+}
+div.toolbar a.paste {
+ background-image:url(../images/document-new.png);
+}
+
+div.content {
+ margin:1em;
+}
+
+/* PASTE */
+
+div.paste {
+ clear:both;
+ padding-bottom:1em;
+ border-bottom:dashed 1px #999;
+}
+
+p.title {
+ margin-left:45px;
+}
+
+a.source {
+ margin-left:1em;
+ font-size:75%;
+}
+span.language {
+ color:#666;
+ font-size:75%;
+}
+
+p.age {
+ font-size:90%;
+ color:#666;
+ float:right;
+ margin:0;
+}
+
+pre {
+ font-size:12px;
+ margin-left:45px;
+}
+
+/* NEW PASTE FORM */
+
+form p {
+ margin-top:0.5em;
+}
+form p.label {
+ margin-bottom:0;
+}
+form label {
+ font-weight:bold;
+}
+form input.title {
+ width:61.8%;
+}
+form textarea {
+ width:100%;
+ background:#eee;
+}
+
+p.error {
+ font-size:1.5em;
+}
+p.error, span.error {
+ color:#900;
+}
+input.error, textarea.error {
+ background-color:#fcc !important;
+}
