@@ -3,18 +3,7 @@
 
 <div class="content">
     <div class="paste">
-        <p class="age">
-            posted at ${paste.pastedAt}
-            #{if paste.pastedByNick != null}
-                by <strong>${paste.pastedByNick}<strong>
-            #{/if}
-        </p>
-        <p class="title">
-            <a href="@{Application.show(paste.id)}">${paste.title}</a>
-            #{if paste.codeMimeType != null}
-                <span class="${paste.codeMimeType} language">${paste.codeMimeType}</span>
-            #{/if}
-        </p>
+        #{pasteheader paste /}
         <div class="sourcelist">
             <p>${highlightedCode.raw()}</p>
         </div>

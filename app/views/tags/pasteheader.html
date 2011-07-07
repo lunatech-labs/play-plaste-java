@@ -1,0 +1,12 @@
+<p class="age">
+    posted at ${_arg.pastedAt}
+    #{if _arg.pastedByNick != null && _arg.pastedByNick != ''}
+        by <strong>${_arg.pastedByNick}<strong>
+    #{/if}
+</p>
+<p class="title">
+    <a href="@{Application.show(_arg.id)}">${_arg.title}</a>
+    #{if _arg.codeMimeType != null && _arg.codeMimeType != ''}
+        <span class="${_arg.codeMimeType} language">${_arg.codeMimeType}</span>
+    #{/if}
+</p>

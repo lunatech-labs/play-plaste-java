@@ -5,18 +5,7 @@
     #{if pastes.size() > 0}
     #{list items:pastes, as:'paste'}
         <div class="paste">
-            <p class="age">
-                posted at ${paste.pastedAt}
-                #{if paste.pastedByNick != null && paste.pastedByNick != ''}
-                    by <strong>${paste.pastedByNick}</strong>
-                #{/if}
-            </p>
-            <p class="title">
-                <a href="@{Application.show(paste.id)}">${paste.title}</a>
-                #{if paste.codeMimeType != null}
-                    <span class="${paste.codeMimeType} language">${paste.codeMimeType}</span>
-                #{/if}
-            </p>
+            #{pasteheader paste /}
         </div>
     #{/list}
     #{/if}
