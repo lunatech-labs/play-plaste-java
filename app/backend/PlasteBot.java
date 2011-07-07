@@ -36,7 +36,7 @@ public class PlasteBot extends PircBot {
 
 	public static synchronized PlasteBot getInstance() {
 		if (PlasteBot.instance == null)
-			throw new IllegalStateException("PlasteBot instance requested before starting");
+			throw new IllegalStateException("PlasteBot instance required before starting");
 
 		return PlasteBot.instance;
 	}

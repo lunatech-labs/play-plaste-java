@@ -7,7 +7,6 @@ import models.Paste;
 import net.sf.jmimemagic.Magic;
 import org.apache.commons.io.IOUtils;
 import play.Logger;
-import play.db.jpa.JPABase;
 import play.mvc.Controller;
 import play.mvc.Router;
 

@@ -7,8 +7,6 @@ require:
     - pircbot -> pircbot 1.5.0
     - jmimemagic -> jmimemagic 0.1.2
 repositories:
-    - lunatechPublic:
+    - mavenCentral:
         type: iBiblio
-        root: "http://nexus.lunatech.com/content/repositories/lunatech-public/"
-        contains:
-            - org.smop -> *
+        root: "http://nexus.lunatech.com/content/repositories/public/"

@@ -2,6 +2,7 @@ package jobs;
 
 import backend.PlasteBot;
 import models.Paste;
+import play.Play;
 import play.jobs.Job;
 import play.mvc.Router;
 
@@ -23,6 +24,9 @@ public class IrcMessageJob extends Job<Object> {
 
 	@Override
 	public void doJob() throws Exception {
-		PlasteBot.getInstance().sendMessage(paste.getLongDescription() + " at " + url);
+		if (Play.configuration.getProperty("irc.server") != null &&
+				Play.configuration.getProperty("irc.channel") != null &&
+				Play.configuration.getProperty("irc.nick") != null)
+			PlasteBot.getInstance().sendMessage(paste.getLongDescription() + " at " + url);
 	}
 }
