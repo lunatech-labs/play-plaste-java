@@ -1,5 +1,6 @@
 package models;
 
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import java.util.Date;
 
 @Entity
 public class Paste extends Model {
+    @Required
 	public String title;
 
 	@Lob // Play makes this a CLOB

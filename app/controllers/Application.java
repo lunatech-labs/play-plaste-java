@@ -7,6 +7,7 @@ import models.Paste;
 import net.sf.jmimemagic.Magic;
 import org.apache.commons.io.IOUtils;
 import play.Logger;
+import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.Router;
 
@@ -38,7 +39,13 @@ public class Application extends Controller {
 		render(nicks, lexers);
 	}
 
-	public static void post(final File attachment, final Paste paste) {
+	public static void post(final File attachment, @Valid final Paste paste) {
+        if(validation.hasErrors()) {
+            params.flash(); // add http parameters to the flash scope
+            validation.keep(); // keep the errors for the next request
+            newPaste();
+        }
+
 		if (attachment != null && attachment.canRead()) {
 			final FileInputStream inputStream;
 			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
