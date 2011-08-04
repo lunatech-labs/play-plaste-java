@@ -4,24 +4,26 @@
 <div class="content">
     <div class="paste">
         #{pasteheader paste /}
-        <div class="sourcelist">
-            <p>${highlightedCode.raw()}</p>
-        </div>
+        #{if highlightedCode.raw() != null && highlightedCode.raw() != ''}
+            <div class="sourcelist">
+                <p>${highlightedCode.raw()}</p>
+            </div>
+        #{/if}
 
         #{if paste.attachment != null}
-        <div>
-            <h2>Attachment</h2>
+            <div>
+                <h2>Attachment</h2>
 
-            #{if paste.attachmentMimeType.startsWith("image/")}
-                <img src="@{Application.attachment(paste.id)}"/>
-            #{/if}
-            #{elseif paste.attachmentMimeType.startsWith("text/")}
-                <p><pre>${paste.attachmentAsString()}</pre></p>
-            #{/elseif}
-            #{else}
-            <a href="@{Application.attachment(paste.id)}">${paste.attachmentFilename} (${paste.attachmentMimeType})</a>
-            #{/else}
-        </div>
+                #{if paste.attachmentMimeType.startsWith("image/")}
+                    <img src="@{Application.attachment(paste.id)}"/>
+                #{/if}
+                #{elseif paste.attachmentMimeType.startsWith("text/")}
+                    <p><pre>${paste.attachmentAsString()}</pre></p>
+                #{/elseif}
+                #{else}
+                <a href="@{Application.attachment(paste.id)}">${paste.attachmentFilename} (${paste.attachmentMimeType})</a>
+                #{/else}
+            </div>
         #{/if}
     </div>
 </div>
