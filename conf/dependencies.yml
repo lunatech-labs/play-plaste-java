@@ -2,7 +2,7 @@
 
 require:
     - play
-    - play -> scala 0.9
+    - play -> scala 0.9.1
     - org.smop -> pygments_2.8.1 0.1.2
     - pircbot -> pircbot 1.5.0
     - jmimemagic -> jmimemagic 0.1.2
