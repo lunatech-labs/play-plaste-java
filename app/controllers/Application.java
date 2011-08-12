@@ -76,6 +76,11 @@ public class Application extends Controller {
 			paste.attachmentFilename = pathParts[pathParts.length - 1];
 		}
 
+		// Clear the code MIME type if there is no code.
+		if (StringUtils.isEmpty(paste.code)) {
+			paste.codeMimeType = null;
+		}
+
 		paste.save();
 
 

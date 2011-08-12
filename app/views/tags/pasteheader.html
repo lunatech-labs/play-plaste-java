@@ -6,7 +6,7 @@
 </p>
 <p class="title">
     <a href="@{Application.show(_arg.id)}">${_arg.title}</a>
-    #{if _arg.codeMimeType != null && _arg.codeMimeType != ''}
+    #{if _arg.codeMimeType}
         <span class="${_arg.codeMimeType} language">${_arg.codeMimeType}</span>
     #{/if}
 </p>
