@@ -1,5 +1,7 @@
 .idea/
 Plaste.iml
+plaste.ipr
+plaste.iws
 tmp/
 lib/
 modules/
