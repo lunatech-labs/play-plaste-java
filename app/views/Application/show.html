@@ -12,8 +12,6 @@
 
         #{if paste.attachment}
             <div>
-                <h2>Attachment</h2>
-
                 #{if paste.attachmentMimeType.startsWith("image/")}
                     <img src="@{Application.attachment(paste.id)}"/>
                 #{/if}
