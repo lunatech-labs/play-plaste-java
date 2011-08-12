@@ -6,6 +6,7 @@ import jobs.IrcMessageJob;
 import models.Paste;
 import net.sf.jmimemagic.Magic;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.data.validation.Valid;
 import play.mvc.Controller;
@@ -29,7 +30,8 @@ public class Application extends Controller {
 	public static void show(Long id) {
 		final Paste paste = Paste.findById(id);
 		notFoundIfNull(paste);
-		final String highlightedCode = Pygments.highlight(paste.code, paste.codeMimeType);
+		final boolean includesCode = !StringUtils.isEmpty(paste.code);
+		final String highlightedCode = includesCode ? Pygments.highlight(paste.code, paste.codeMimeType) : null;
 		render(paste, highlightedCode);
 	}
 

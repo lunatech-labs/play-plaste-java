@@ -4,13 +4,13 @@
 <div class="content">
     <div class="paste">
         #{pasteheader paste /}
-        #{if highlightedCode.raw() != null && highlightedCode.raw() != ''}
+        #{if highlightedCode}
             <div class="sourcelist">
                 <p>${highlightedCode.raw()}</p>
             </div>
         #{/if}
 
-        #{if paste.attachment != null}
+        #{if paste.attachment}
             <div>
                 <h2>Attachment</h2>
 
