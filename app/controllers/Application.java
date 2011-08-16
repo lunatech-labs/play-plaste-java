@@ -45,7 +45,7 @@ public class Application extends Controller {
 	public static void rawData(Long id) {
 		final Paste paste = Paste.findById(id);
 		notFoundIfNull(paste);
-		response.setContentTypeIfNotSet(paste.codeMimeType);
+		response.setContentTypeIfNotSet("text/" + paste.codeMimeType);
 		renderText(paste.code);
 	}
 
