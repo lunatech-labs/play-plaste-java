@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Application extends Controller {
-	public static void gotoNewPaste() {
+
+	public static void redirectToNewPaste() {
 		newPaste();
 	}
 
@@ -27,12 +28,25 @@ public class Application extends Controller {
 		render(pastes);
 	}
 
+	/*
+	 * Action to render a paste web page, with syntax highlighting.
+	 */
 	public static void show(Long id) {
 		final Paste paste = Paste.findById(id);
 		notFoundIfNull(paste);
 		final boolean includesCode = !StringUtils.isEmpty(paste.code);
 		final String highlightedCode = includesCode ? Pygments.highlight(paste.code, paste.codeMimeType) : null;
 		render(paste, highlightedCode);
+	}
+
+	/**
+	 * Action to render a paste's raw data, or the attachment if there is no paste, with the approprite MIME type.
+	 */
+	public static void rawData(Long id) {
+		final Paste paste = Paste.findById(id);
+		notFoundIfNull(paste);
+		response.setContentTypeIfNotSet(paste.codeMimeType);
+		renderText(paste.code);
 	}
 
 	public static void newPaste() {

@@ -1,4 +1,5 @@
 <p class="age">
+    <a href="@{Application.rawData(_arg.id)}">raw</a> •
     posted at ${_arg.pastedAt}
     #{if _arg.pastedByNick != null && _arg.pastedByNick != ''}
         by <strong>${_arg.pastedByNick}<strong>
