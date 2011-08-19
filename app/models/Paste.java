@@ -1,5 +1,6 @@
 package models;
 
+import org.hibernate.annotations.Type;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
@@ -13,6 +14,7 @@ public class Paste extends Model {
 	public String title;
 
 	@Lob // Play makes this a CLOB
+	@Type(type="org.hibernate.type.TextType")
 	public String code;
 	public String codeMimeType;
 
