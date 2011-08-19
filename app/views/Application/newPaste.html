@@ -9,7 +9,7 @@
     <p class="label ${errors.forKey('paste.title') ? 'error' : ''}">
         <label for="paste.title">Title</label>
     </p>
-    <p><input id="paste.title" name="paste.title" tabindex="10" value="${flash['paste.title']}" class="title ${errors.forKey('paste.title') ? 'error' : ''}">
+    <p><input id="paste.title" name="paste.title" value="${flash['paste.title']}" class="title ${errors.forKey('paste.title') ? 'error' : ''}">
         #{errors 'paste.title'}
             <span class="error">${error}</span>
         #{/errors}
@@ -28,7 +28,7 @@
         #{/select}
     </p>
 
-    <p><textarea id="paste.code" name="paste.code" rows="40" tabindex="30" class="">${flash['paste.code']}</textarea></p>
+    <p><textarea id="paste.code" name="paste.code" rows="40" class="">${flash['paste.code']}</textarea></p>
 
     <p class="label">
         <label for="attachment">Attachment</label>
@@ -36,7 +36,7 @@
     <p><input type="file" id="attachment" name="attachment"></p>
 
     <p class="label"><label for="paste.pastedByNick">From</label> (your IRC nick - optional)</p>
-    <p><input id="paste.pastedByNick" name="paste.pastedByNick" class="pastedBy" tabindex="40" value="${flash['paste.pastedByNick']}"></p>
+    <p><input id="paste.pastedByNick" name="paste.pastedByNick" class="pastedBy"  value="${flash['paste.pastedByNick']}"></p>
 
     <p class="label"><label for="paste.pastedForNick">For</label> (someone else's nick - optional)</p>
     <p>
@@ -47,7 +47,7 @@
     </p>
 
     <p>
-        <input type="submit" value="Paste" tabindex="50" accesskey="s">
+        <input type="submit" value="Paste" accesskey="s">
     </p>
     #{/form}
 </div>
