@@ -4,7 +4,7 @@ require:
     - play
     - play -> scala 0.9.1
     - postgresql -> postgresql 8.4-702.jdbc4
-    - org.smop -> pygments_2.8.1 0.1.2
+    - org.smop -> pygments_2.8.1 0.1.5
     - pircbot -> pircbot 1.5.0
     - jmimemagic -> jmimemagic 0.1.2
 repositories:
