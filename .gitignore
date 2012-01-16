@@ -7,3 +7,5 @@ lib/
 modules/
 test-result/
 plaste.log
+logs/
+server.pid
